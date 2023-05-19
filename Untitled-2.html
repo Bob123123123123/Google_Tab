@@ -1,0 +1,59 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+//a function to create and add an iframe
+function addIframe() {
+  //create an iframe element
+  var iframe = document.createElement("iframe");
+  //set its src attribute to Google
+  iframe.src = "https://www.google.com";
+  //set its width and height
+  iframe.width = "400";
+  iframe.height = "300";
+  //set its allowfullscreen attribute to true
+  iframe.allowfullscreen = true;
+  //get a reference to the div
+  var div = document.getElementById("mydiv");
+  //add the iframe to the div
+  div.appendChild(iframe);
+  //create a button element for deleting
+  var deleteButton = document.createElement("button");
+  //set its text content to Delete
+  deleteButton.textContent = "Delete";
+  //add a click event listener to the button
+  deleteButton.addEventListener("click", function() {
+    //remove the iframe and the buttons
+    iframe.remove();
+    deleteButton.remove();
+    fullscreenButton.remove();
+  });
+  //add the button to the div
+  div.appendChild(deleteButton);
+  //create a button element for fullscreen
+  var fullscreenButton = document.createElement("button");
+  //set its text content to Fullscreen
+  fullscreenButton.textContent = "Fullscreen";
+  //add a click event listener to the button
+  fullscreenButton.addEventListener("click", function() {
+    //request fullscreen mode for the iframe
+    iframe.requestFullscreen();
+  });
+  //add the button to the div
+  div.appendChild(fullscreenButton);
+}
+
+//a function to delete all the iframes
+function deleteIframes() {
+  //use jQuery to select and remove all the iframes and buttons
+  $("iframe").remove();
+  $("button").not("#add").remove();
+}
+</script>
+</head>
+<body>
+<button id="add" onclick="addIframe()">Add iframe</button>
+<button onclick="deleteIframes()">Delete all iframes</button>
+<div id="mydiv"></div>
+</body>
+</html>
